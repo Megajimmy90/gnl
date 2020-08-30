@@ -17,14 +17,11 @@ int ft_strlen(const char *str)
 	int n;
 
 	n = 0;
-	while (1)
+	while (str[n] != '\0')
 	{
-		if (str[n] == '\0')
-		{
-			return (n);
-		}
 		n++;
 	}
+	return (n);
 }
 
 char *ft_strdup(char *src)
