@@ -12,9 +12,9 @@
 
 #include "./get_next_line.h"
 
-int		ft_endline(char *s)
+int ft_endline(char *s)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	if (s == NULL)
@@ -28,59 +28,74 @@ int		ft_endline(char *s)
 	return (-1);
 }
 
-int		finishline(int fd, char **line, char **str)
+int finishline(int fd, char **line, char **str)
 {
-	int		el;
-	char	*tmp;
-	int		len;
-	
+	int el;
+	char *tmp;
+	int len;
+	int temp;
+
 	if (str[fd] != NULL)
 	{
 		el = ft_endline(str[fd]);
 		len = ft_strlen(str[fd]);
+		temp = el;
 		if (el == -1)
-		{
 			el = len;
-			*line = (char *)malloc(sizeof(char) * el);
-			ft_memcpy(*line, str[fd], el);
-			str[fd] = NULL;
-			free(str[fd]);
-		}
-		else
+		*line = (char *)malloc(sizeof(char) * el + 1);
+		ft_memcpy(*line, str[fd], el);
+
+		if (temp != -1)
 		{
-			*line = (char *)malloc(sizeof(char) * el);
-			ft_memcpy(*line, str[fd], el);
 			tmp = ft_substr(str[fd], el + 1, len);
 			free(str[fd]);
 			str[fd] = tmp;
+			return (1);
 		}
 	}
 	else
-		*line = ft_strdup("");
-	return (1);
+	{
+		free(str[fd]);
+		str[fd] = NULL;
+	}
+	*line = ft_strdup("");
+	return (0);
 }
 
-int		get_next_line(int fd, char **line)
+int get_next_line(int fd, char **line)
 {
-	int			b;
-	char		*buf;
-	static char *str[4096];
-	char		*tmp;
+	int b;
+	char *buf;
+	static char *str[256];
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || !(buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (-1);
 	while ((b = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[b] = '\0';
-		tmp = ft_strjoin(str[fd], buf);
-		free(str[fd]);
-		str[fd] = tmp;
+		str[fd] = ft_strjoin(str[fd], buf);
 		if (ft_endline(str[fd]) >= 0)
 			break;
 	}
-	buf = NULL;
 	free(buf);
+	buf = NULL;
 	if (b < 0)
 		return (-1);
 	return (finishline(fd, line, str));
+}
+
+int main()
+{
+	char *prueba;
+	int fd = open("prueba.txt", O_RDONLY);
+
+	int i = 0;
+	while (get_next_line(fd, &prueba))
+	{	
+		printf("%s\n", prueba);
+		free(prueba);
+		i++;
+	}
+	printf("%s\n", prueba);
+	
 }

@@ -75,20 +75,22 @@ char *ft_strjoin(char *s1, char *s2)
 
 void *ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char *str1;
-	unsigned char *str2;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	int				i;
 
 	str1 = (unsigned char *)dest;
 	str2 = (unsigned char *)src;
-
+	i = 0;
 	if (!n || dest == src)
 		return (dest);
-
+	
 	while (n--)
 	{
-		*str1++ = *str2++;
+		str1[i] = str2[i];
+		i++;
 	}
-	*str1 = '\0';
+	str1[i] = '\0';
 	return (dest);
 }
 
