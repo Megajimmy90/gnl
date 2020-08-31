@@ -12,7 +12,7 @@
 
 #include "./get_next_line.h"
 
-int ft_strlen(const char *str)
+int		ft_strlen(const char *str)
 {
 	int n;
 
@@ -24,11 +24,11 @@ int ft_strlen(const char *str)
 	return (n);
 }
 
-char *ft_strdup(char *src)
+char	*ft_strdup(char *src)
 {
-	int s;
-	char *dest;
-	int i;
+	int		s;
+	char	*dest;
+	int		i;
 
 	i = 0;
 	s = 0;
@@ -40,17 +40,18 @@ char *ft_strdup(char *src)
 		dest[i] = src[i];
 		i++;
 	}
+	dest[i] = '\0';
 	return (dest);
 }
 
 
-char *ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	int len1;
-	int len2;
-	char *res;
-	int i;
-	int j;
+	int		len1;
+	int		len2;
+	char	*res;
+	int		i;
+	int		j;
 
 	if (!s1 && !s2)
 		return (NULL);
@@ -73,7 +74,7 @@ char *ft_strjoin(char *s1, char *s2)
 	return (res);
 }
 
-void *ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	unsigned char	*str1;
 	unsigned char	*str2;
@@ -82,9 +83,9 @@ void *ft_memcpy(void *dest, const void *src, size_t n)
 	str1 = (unsigned char *)dest;
 	str2 = (unsigned char *)src;
 	i = 0;
+
 	if (!n || dest == src)
 		return (dest);
-	
 	while (n--)
 	{
 		str1[i] = str2[i];
@@ -94,12 +95,11 @@ void *ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char *ptr;
-	size_t i;
-	int j;
+	char	*ptr;
+	size_t	i;
+	int		j;
 
 	if (!s)
 		return (NULL);
