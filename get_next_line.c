@@ -12,7 +12,7 @@
 
 #include "./get_next_line.h"
 
-static int	ft_endline(char *s)
+static int ft_endline(char *s)
 {
 	int	i;
 
@@ -28,12 +28,22 @@ static int	ft_endline(char *s)
 	return (-1);
 }
 
+static int	rest(char *str, int el, int len)
+{
+	char	*tmp;
+
+	tmp = ft_substr(str, el + 1, len);
+	free(str);
+	str = tmp;
+
+	return (1);
+}
+
 static int	finishline(int fd, char **line, char **str)
 {
-	int		el;
-	char	*tmp;
-	int		len;
-	int		temp;
+	int	el;
+	int	len;
+	int	temp;
 
 	if (str[fd] != NULL)
 	{
@@ -50,12 +60,7 @@ static int	finishline(int fd, char **line, char **str)
 			ft_memcpy(*line, str[fd], el);
 		}
 		if (temp != -1)
-		{
-			tmp = ft_substr(str[fd], el + 1, len);
-			free(str[fd]);
-			str[fd] = tmp;
-			return (1);
-		}
+			return (rest(str[fd], el, len));
 		free(str[fd]);
 		str[fd] = NULL;
 		return (0);
@@ -64,11 +69,11 @@ static int	finishline(int fd, char **line, char **str)
 	return (0);
 }
 
-int	get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
 	int			b;
 	char		*buf;
-	static char *str[256];
+	static char	*str[256];
 	char		*tmp;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || !(buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
