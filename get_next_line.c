@@ -28,13 +28,13 @@ static int ft_endline(char *s)
 	return (-1);
 }
 
-static int	rest(char *str, int el, int len)
+static int	rest(char **str, int el, int len, int fd)
 {
 	char	*tmp;
 
-	tmp = ft_substr(str, el + 1, len);
-	free(str);
-	str = tmp;
+	tmp = ft_substr(str[fd], el + 1, len);
+	free(str[fd]);
+	str[fd] = tmp;
 
 	return (1);
 }
@@ -60,7 +60,7 @@ static int	finishline(int fd, char **line, char **str)
 			ft_memcpy(*line, str[fd], el);
 		}
 		if (temp != -1)
-			return (rest(str[fd], el, len));
+			return (rest(str, el, len, fd));
 		free(str[fd]);
 		str[fd] = NULL;
 		return (0);
