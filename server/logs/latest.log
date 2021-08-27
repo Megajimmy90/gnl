@@ -1,0 +1,22 @@
+[00:06:06] [Server thread/INFO]: Starting minecraft server version 1.8.8
+[00:06:06] [Server thread/INFO]: Loading properties
+[00:06:06] [Server thread/WARN]: server.properties does not exist
+[00:06:06] [Server thread/INFO]: Generating new properties file
+[00:06:06] [Server console handler/ERROR]: Exception handling console input
+java.io.IOException: Controlador no válido
+	at java.io.FileInputStream.readBytes(Native Method) ~[?:1.8.0_281]
+	at java.io.FileInputStream.read(Unknown Source) ~[?:1.8.0_281]
+	at java.io.BufferedInputStream.fill(Unknown Source) ~[?:1.8.0_281]
+	at java.io.BufferedInputStream.read(Unknown Source) ~[?:1.8.0_281]
+	at org.bukkit.craftbukkit.libs.jline.internal.NonBlockingInputStream.read(NonBlockingInputStream.java:248) ~[spigot-1.8.8-R0.1-SNAPSHOT-latest.jar:git-Spigot-db6de12-18fbb24]
+	at org.bukkit.craftbukkit.libs.jline.internal.InputStreamReader.read(InputStreamReader.java:261) ~[spigot-1.8.8-R0.1-SNAPSHOT-latest.jar:git-Spigot-db6de12-18fbb24]
+	at org.bukkit.craftbukkit.libs.jline.internal.InputStreamReader.read(InputStreamReader.java:198) ~[spigot-1.8.8-R0.1-SNAPSHOT-latest.jar:git-Spigot-db6de12-18fbb24]
+	at org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readCharacter(ConsoleReader.java:2145) ~[spigot-1.8.8-R0.1-SNAPSHOT-latest.jar:git-Spigot-db6de12-18fbb24]
+	at org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readLineSimple(ConsoleReader.java:3183) ~[spigot-1.8.8-R0.1-SNAPSHOT-latest.jar:git-Spigot-db6de12-18fbb24]
+	at org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readLine(ConsoleReader.java:2333) ~[spigot-1.8.8-R0.1-SNAPSHOT-latest.jar:git-Spigot-db6de12-18fbb24]
+	at org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readLine(ConsoleReader.java:2269) ~[spigot-1.8.8-R0.1-SNAPSHOT-latest.jar:git-Spigot-db6de12-18fbb24]
+	at org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readLine(ConsoleReader.java:2257) ~[spigot-1.8.8-R0.1-SNAPSHOT-latest.jar:git-Spigot-db6de12-18fbb24]
+	at net.minecraft.server.v1_8_R3.DedicatedServer$2.run(DedicatedServer.java:81) [spigot-1.8.8-R0.1-SNAPSHOT-latest.jar:git-Spigot-db6de12-18fbb24]
+[00:06:06] [Server thread/WARN]: Failed to load eula.txt
+[00:06:07] [Server thread/INFO]: You need to agree to the EULA in order to run the server. Go to eula.txt for more info.
+[00:06:07] [Server thread/INFO]: Stopping server
